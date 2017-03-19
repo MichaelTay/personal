@@ -96,7 +96,7 @@ int main(int argc, char* argv[]) {
 
   // Best guess of initial states
   Eigen::VectorXd x0(n);
-  x0 << measurements[0].radial, measurements[0].theta, 0;
+  x0 << r0, theta0, v0;
   kf.init(0, x0);
 
   // Feed measurements into filter, output estimated states
@@ -108,7 +108,7 @@ int main(int argc, char* argv[]) {
     t += dt;
     y << measurements[i].radial, measurements[i].theta;
     kf.update(y);
-	print_results(kf);
+  	print_results(kf);
   }
 
   return 0;
