@@ -103,11 +103,13 @@ int main(int argc, char* argv[]) {
   double t = 0;
   Eigen::VectorXd y(m);
   cout << fixed << setprecision(6) << left;
+  cout << "Results: " << endl;
   print_results(kf);
   for(int i = 1; i < measurements.size(); i++) {
     t += dt;
     y << measurements[i].radial, measurements[i].theta;
     kf.update(y);
+    cout << "Results: " << endl;
   	print_results(kf);
   }
 

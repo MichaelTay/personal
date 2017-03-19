@@ -41,7 +41,7 @@ void KalmanFilter::init() {
   t = t0;
   initialized = true;
 }
-
+using namespace std;
 void KalmanFilter::update(const Eigen::VectorXd& y) {
 
   if(!initialized)
@@ -50,6 +50,7 @@ void KalmanFilter::update(const Eigen::VectorXd& y) {
   x_new = A * x;
   P = A*P*A.transpose() + Q;
   K = P*C.transpose()*(C*P*C.transpose() + R).inverse();
+  cout << "K= " << endl << K << endl;
   x_new += K * (y - C*x_new);
   P = (I - K*C)*P;
   x = x_new;
